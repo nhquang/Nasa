@@ -8,15 +8,9 @@ using System.Threading.Tasks;
 
 namespace Nasa
 {
-    class MainViewModel : INotifyPropertyChanged
+    class MainViewModel : BaseViewModel
     {
-        private Photos photos_;
-
-        public Photos photos
-        {
-            get { return photos_; }
-            set { photos_ = value; OnPropertyChanged(nameof(photos)); }
-        }
+        
 
         private RelayCommand command_;
 
@@ -32,13 +26,6 @@ namespace Nasa
 
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        void OnPropertyChanged(string propName)
-        {
-            if(PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propName));
-            }
-        }
+        
     }
 }

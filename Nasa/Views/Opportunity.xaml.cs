@@ -16,14 +16,14 @@ using System.Windows.Shapes;
 namespace Nasa
 {
     /// <summary>
-    /// Interaction logic for Curiosity.xaml
+    /// Interaction logic for Opportunity.xaml
     /// </summary>
-    public partial class Curiosity : Page
+    public partial class Opportunity : Page
     {
-        public Curiosity()
+        public Opportunity()
         {
             InitializeComponent();
-            DataContext = new CuriosityViewModel();
+            DataContext = new OpporunityViewModel();
         }
     }
 }
