@@ -66,6 +66,7 @@
     <Compile Include="ViewModels\CuriosityViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\OpporunityViewModel.cs" />
+    <Compile Include="ViewModels\SpiritViewModel.cs" />
     <Compile Include="Views\Opportunity.xaml.cs">
       <DependentUpon>Opportunity.xaml</DependentUpon>
     </Compile>

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Nasa
+namespace Nasa.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
