@@ -10,12 +10,20 @@ namespace Nasa
 {
     class MainViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<MarsPhoto> marsPhotos_;
+        private Photos photos_;
 
-        public ObservableCollection<MarsPhoto> MarsPhotos
+        public Photos photos
         {
-            get { return marsPhotos_; }
-            set { marsPhotos_ = value; }
+            get { return photos_; }
+            set { photos_ = value; OnPropertyChanged(nameof(photos)); }
+        }
+
+        private RelayCommand command_;
+
+        public RelayCommand Command
+        {
+            get { return command_; }
+            set { command_ = value; }
         }
 
 

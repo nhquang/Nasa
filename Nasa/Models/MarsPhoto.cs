@@ -1,11 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Nasa
 {
+    class Photos
+    {
+        private ObservableCollection<MarsPhoto> photos_;
+
+        public ObservableCollection<MarsPhoto> photos
+        {
+            get { return photos_; }
+            set { photos_ = value; }
+        }
+
+    }
     class MarsPhoto
     {
         public long id { get; set; }
