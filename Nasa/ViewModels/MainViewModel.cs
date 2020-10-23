@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,15 @@ namespace Nasa
 {
     class MainViewModel : INotifyPropertyChanged
     {
+        private ObservableCollection<MarsPhoto> marsPhotos_;
+
+        public ObservableCollection<MarsPhoto> MarsPhotos
+        {
+            get { return marsPhotos_; }
+            set { marsPhotos_ = value; }
+        }
+
+
         public MainViewModel()
         {
 
