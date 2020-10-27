@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nasa
+namespace Nasa.ViewModels
 {
     class CuriosityViewModel : BaseViewModel
     {

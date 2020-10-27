@@ -18,12 +18,12 @@ namespace Nasa.Views
     /// <summary>
     /// Interaction logic for Curiosity.xaml
     /// </summary>
-    public partial class Curiosity : Page
+    public partial class Curiosity : UserControl
     {
         public Curiosity()
         {
             InitializeComponent();
-            DataContext = new CuriosityViewModel();
+            //DataContext = new Nasa.ViewModels.CuriosityViewModel();
         }
     }
 }

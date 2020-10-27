@@ -23,7 +23,7 @@ namespace Nasa.Views
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
+            DataContext = new Nasa.ViewModels.MainViewModel();
         }
     }
 }

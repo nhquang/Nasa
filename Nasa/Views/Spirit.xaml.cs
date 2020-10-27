@@ -18,11 +18,12 @@ namespace Nasa.Views
     /// <summary>
     /// Interaction logic for Spirit.xaml
     /// </summary>
-    public partial class Spirit : Page
+    public partial class Spirit : UserControl
     {
         public Spirit()
         {
             InitializeComponent();
+            //DataContext = new Nasa.ViewModels.SpiritViewModel();
         }
     }
 }
