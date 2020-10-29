@@ -14,7 +14,7 @@
             <Views:Opportunity/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewmodels:SpiritViewModel}">
-            <Views:Curiosity/>
+            <Views:Spirit/>
         </DataTemplate>
         
         

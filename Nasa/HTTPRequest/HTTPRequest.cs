@@ -46,9 +46,9 @@ namespace Nasa
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public static async Task<List<MarsPhoto>> getData(HttpWebRequest request)
+        public static async Task<string> getData(HttpWebRequest request)
         {
-            List<MarsPhoto> marsPhoto = null;
+            var jsonResponse = string.Empty;
             try
             {
                 using (var response = await request.GetResponseAsync())
@@ -57,15 +57,14 @@ namespace Nasa
                     {
                         using (System.IO.StreamReader sr = new System.IO.StreamReader(stream))
                         {
-                            var jsonResponse = await sr.ReadToEndAsync();
-                            marsPhoto = JsonConvert.DeserializeObject<List<MarsPhoto>>(jsonResponse);
+                            jsonResponse = await sr.ReadToEndAsync();
                             sr.Close();
                         }
                         stream.Close();
                     }
                     response.Close();
                 }
-                return marsPhoto;
+                return jsonResponse;
                 
             }
             catch(Exception ex)
@@ -73,6 +72,6 @@ namespace Nasa
                 throw;
             }
         }
-
+        
     }
 }
