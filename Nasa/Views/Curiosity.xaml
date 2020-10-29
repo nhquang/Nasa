@@ -11,10 +11,10 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Curiosity" HorizontalAlignment="Center"/>
-        <Image Source="{Binding Image, Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <Button Grid.Row="0" Grid.Column="1" Content="see" HorizontalAlignment="Center" Command="{Binding SeePhotos}" VerticalAlignment="Center" Width="200" Height="100"/>
+        <TextBlock  Grid.Column="0" Text="Curiosity" HorizontalAlignment="Center"/>
+        <Image Source="{Binding Image, Mode=TwoWay}"  Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Fill"/>
+        <Button  Grid.Column="1" Content="see" HorizontalAlignment="Center" Command="{Binding SeePhotos}" VerticalAlignment="Center" Width="200" Height="100"/>
     </Grid>
 </UserControl>
