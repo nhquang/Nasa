@@ -19,47 +19,30 @@ namespace Nasa.ViewModels
         }
 
 
-        private RelayCommand switchingToCuriosityViewCommand_;
+        private RelayCommand switchingViewCommand_;
 
-        public RelayCommand SwitchingToCuriosityViewCommand
+        public RelayCommand SwitchingViewCommand
         {
-            get { return switchingToCuriosityViewCommand_; }
-            set { switchingToCuriosityViewCommand_ = value; }
+            get { return switchingViewCommand_; }
+            set { switchingViewCommand_ = value; }
         }
-        private RelayCommand switchingToOpportunityViewCommand_;
-
-        public RelayCommand SwitchingToOpportunityViewCommand
-        {
-            get { return switchingToOpportunityViewCommand_; }
-            set { switchingToOpportunityViewCommand_ = value; }
-        }
-        private RelayCommand switchingToSpiritViewCommand_;
-
-        public RelayCommand SwitchingToSpiritViewCommand
-        {
-            get { return switchingToSpiritViewCommand_; }
-            set { switchingToSpiritViewCommand_ = value; }
-        }
+        
 
 
         public MainViewModel()
         {
-            SwitchingToCuriosityViewCommand = new RelayCommand(() => curiosity());
-            SwitchingToOpportunityViewCommand = new RelayCommand(() => opportunity());
-            SwitchingToSpiritViewCommand = new RelayCommand(() => spirit());
+            SwitchingViewCommand = new RelayCommand((a) => curiosity(a), true);
             SelectedView = new CuriosityViewModel();
         }
-        void curiosity()
+        void curiosity(object parameter)
         {
-            SelectedView = new CuriosityViewModel();
+            if (parameter.ToString().Equals("Curiosity"))
+                SelectedView = new CuriosityViewModel();
+            else if (parameter.ToString().Equals("Opportunity"))
+                SelectedView = new OpporunityViewModel();
+            else
+                SelectedView = new SpiritViewModel();
         }
-        void opportunity()
-        {
-            SelectedView = new OpporunityViewModel();
-        }
-        void spirit()
-        {
-            SelectedView = new SpiritViewModel();
-        }
+        
     }
 }

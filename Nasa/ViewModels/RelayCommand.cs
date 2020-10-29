@@ -9,22 +9,33 @@ namespace Nasa.ViewModels
 {
     class RelayCommand : ICommand
     {
+        private Action<object> actionWithParam_;
         private Action action_;
-        public RelayCommand(Action action)
+        private bool canExecute_;
+        public RelayCommand(Action<object> action, bool canExecute)
+        {
+            actionWithParam_ = action;
+            canExecute_ = canExecute;
+        }
+        public RelayCommand(Action action, bool canExecute)
         {
             action_ = action;
+            canExecute_ = canExecute;
         }
 
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
         {
-            return true;
+            return canExecute_;
         }
 
         public void Execute(object parameter)
         {
-            action_();
+            if (actionWithParam_ != null)
+                actionWithParam_(parameter);
+            else
+                action_();
         }
     }
 }

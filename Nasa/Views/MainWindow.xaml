@@ -8,7 +8,7 @@
         xmlns:Views="clr-namespace:Nasa.Views"
         mc:Ignorable="d"
         
-        Title="Nasa" Height="450" Width="800">
+        Title="Nasa" Height="450" Width="700">
     <Window.Resources>
         
 
@@ -20,12 +20,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Button Grid.Row="0" Grid.Column="0" Content="Curiosity Rover" Command="{Binding SwitchingToCuriosityViewCommand}"/>
-        <Button Grid.Row="1" Grid.Column="0" Content="Opportunity Rover" Command="{Binding SwitchingToOpportunityViewCommand}"/>
-        <Button Grid.Row="2" Grid.Column="0" Content="Spririt Rover" Command="{Binding SwitchingToSpiritViewCommand}"/>
+        <Button Grid.Row="0" Grid.Column="0" Content="Curiosity Rover" Command="{Binding SwitchingViewCommand}" CommandParameter="Curiosity"/>
+        <Button Grid.Row="1" Grid.Column="0" Content="Opportunity Rover" Command="{Binding SwitchingViewCommand}" CommandParameter="Opportunity" />
+        <Button Grid.Row="2" Grid.Column="0" Content="Spririt Rover" Command="{Binding SwitchingViewCommand}" CommandParameter="Spirit"/>
         <ContentControl Grid.Column="1" Content="{Binding SelectedView}"/>
     </Grid>
 </Window>
