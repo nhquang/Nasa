@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,9 +41,9 @@ namespace Nasa.ViewModels
             var args = new Dictionary<string, string>();
             args.Add("earth_date", "2020-10-22");
             args.Add("camera", "FHAZ");
-            args.Add("api_key", "5sfza7L9XZhP85vPARahGKsD6ennxcrchIjCubYW");
-            var a = Encryption.encryption("5sfza7L9XZhP85vPARahGKsD6ennxcrchIjCubYW");
-            var request = HTTPRequest.createRequest("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos", args);
+            args.Add("api_key", Encryption.decryption(ConfigurationSettings.AppSettings["APIkey"].Trim()));
+            
+            var request = HTTPRequest.createRequest($"{ ConfigurationSettings.AppSettings["root"].Trim() }curiosity/photos", args);
             var data = await HTTPRequest.getData(request);
             
             var photos = JsonConvert.DeserializeObject<Photos>(data);
