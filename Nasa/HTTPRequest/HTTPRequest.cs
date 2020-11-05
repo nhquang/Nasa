@@ -10,13 +10,13 @@ namespace Nasa
 {
     static class HTTPRequest
     {
-        
+
         /// <summary>
         /// Creates a HTTP request based on URI and parameters
         /// </summary>
-        /// <param name="URI"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
+        /// <param name="URI">string</param>
+        /// <param name="parameters">Dictionary</param>
+        /// <returns name="HttpWebRequest"></returns>
         public static HttpWebRequest createRequest(string URI, Dictionary<string,string> parameters)
         {
 
@@ -44,8 +44,8 @@ namespace Nasa
         /// <summary>
         /// Sends the request, and waits for the response
         /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
+        /// <param name="request">HttpWebRequest</param>
+        /// <returns name="Task<string>"></returns>
         public static async Task<string> getData(HttpWebRequest request)
         {
             var jsonResponse = string.Empty;
