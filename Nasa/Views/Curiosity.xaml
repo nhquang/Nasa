@@ -34,6 +34,7 @@
         </Grid>
         <Grid>
             <Image Source="{Binding Image, Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Fill"/>
+            <TextBlock Text="Select A Date and A Camera" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Visibility="{Binding Visibility}"/>
         </Grid>
     </DockPanel>
 </UserControl>

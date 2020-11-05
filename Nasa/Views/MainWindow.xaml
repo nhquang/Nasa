@@ -8,7 +8,7 @@
         xmlns:Views="clr-namespace:Nasa.Views"
         mc:Ignorable="d"
         
-        Title="Nasa" Height="450" Width="700">
+        Title="Nasa" Height="500" Width="900">
     <Window.Resources>
         
 

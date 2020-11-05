@@ -33,17 +33,23 @@ namespace Nasa.ViewModels
 
         public MainViewModel()
         {
-            SwitchingViewCommand = new RelayCommand((a) => curiosity(a), true);
+            SwitchingViewCommand = new RelayCommand((a) => execute(a), true);
             SelectedView = new CuriosityViewModel();
         }
-        void curiosity(object parameter)
+        void execute(object parameter)
         {
-            if (parameter.ToString().Equals("Curiosity"))
-                SelectedView = new CuriosityViewModel();
-            else if (parameter.ToString().Equals("Opportunity"))
-                SelectedView = new OpporunityViewModel();
-            else
-                SelectedView = new SpiritViewModel();
+            switch ((string)parameter)
+            {
+                case "Curiosity":
+                    SelectedView = new CuriosityViewModel();
+                    break;
+                case "Opportunity":
+                    SelectedView = new OpporunityViewModel();
+                    break;
+                default:
+                    SelectedView = new SpiritViewModel();
+                    break;
+            }
         }
         
     }

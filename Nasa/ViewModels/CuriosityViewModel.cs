@@ -42,6 +42,7 @@ namespace Nasa.ViewModels
         }
         async Task execute()
         {
+            Visibility = "Hidden";
             var args = new Dictionary<string, string>();
             var parts = SelectedDate.Split(' ').ToList()[0].Split('/');
             

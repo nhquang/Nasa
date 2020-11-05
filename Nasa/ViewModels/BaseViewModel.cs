@@ -16,6 +16,7 @@ namespace Nasa.ViewModels
             Cameras = new ObservableCollection<string>();
             Cameras.Add("Front Hazard Avoidance Cam");
             Cameras.Add("Rear Hazard Avoidance Cam");
+            Visibility = "Visible";
             
         }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -26,6 +27,22 @@ namespace Nasa.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
+        /*private DesignerSerializationVisibilityAttribute visibility_;
+
+        public DesignerSerializationVisibilityAttribute Visibility
+        {
+            get { return visibility_; }
+            set { visibility_ = value; OnPropertyChanged(nameof(Visibility)); }
+        }*/
+
+        private string visibility;
+
+        public string Visibility
+        {
+            get { return visibility; }
+            set { visibility = value; OnPropertyChanged(nameof(Visibility)); }
+        }
+
 
         private Photos photos_;
 
