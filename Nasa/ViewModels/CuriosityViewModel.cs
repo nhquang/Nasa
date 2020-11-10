@@ -70,12 +70,16 @@ namespace Nasa.ViewModels
             var data = await HTTPRequest.getData(request);
             
             var photos = JsonConvert.DeserializeObject<Photos>(data);
+
+            
             if (photos.photos.Count != 0)
             {
-                Image = photos.photos[0].img_src;
+                PhotosURLs = new System.Collections.ObjectModel.ObservableCollection<MarsPhoto>(photos.photos);
+                //Image = PhotosURLs[0].img_src;
             }
             else Visibility3 = "Visible";
             Visibility2 = "Hidden";
+            
         }
     }
 }

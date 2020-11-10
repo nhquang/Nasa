@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace Nasa.ViewModels
 {
@@ -61,12 +62,12 @@ namespace Nasa.ViewModels
             set { visibility3_ = value; OnPropertyChanged(nameof(Visibility3)); }
         }
 
-        private Photos photos_;
+        private ObservableCollection<MarsPhoto> photoURLs_;
 
-        protected Photos photos
+        protected ObservableCollection<MarsPhoto> PhotosURLs
         {
-            get { return photos_; }
-            set { photos_ = value; OnPropertyChanged(nameof(photos)); }
+            get { return photoURLs_; }
+            set { photoURLs_ = value; OnPropertyChanged(nameof(photoURLs_)); }
         }
         private ObservableCollection<string> cameras_;
 
