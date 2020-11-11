@@ -62,12 +62,12 @@ namespace Nasa.ViewModels
             set { visibility3_ = value; OnPropertyChanged(nameof(Visibility3)); }
         }
 
-        private ObservableCollection<MarsPhoto> photoURLs_;
+        private ObservableCollection<string> photos_;
 
-        protected ObservableCollection<MarsPhoto> PhotosURLs
+        public ObservableCollection<string> Photos
         {
-            get { return photoURLs_; }
-            set { photoURLs_ = value; OnPropertyChanged(nameof(photoURLs_)); }
+            get { return photos_; }
+            set { photos_ = value; OnPropertyChanged(nameof(Photos)); }
         }
         private ObservableCollection<string> cameras_;
 

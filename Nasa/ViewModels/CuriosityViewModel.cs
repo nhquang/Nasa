@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
 using System.Linq;
@@ -20,18 +21,6 @@ namespace Nasa.ViewModels
             set { seePhotos_ = value; }
         }
 
-        private string image_;
-
-        public string Image
-        {
-            get { return image_; }
-            set { image_ = value; OnPropertyChanged(nameof(Image)); }
-        }
-
-        
-
-
-
         public CuriosityViewModel() : base()
         {
             SeePhotos = new RelayCommand(() => execute(), true);
@@ -44,7 +33,7 @@ namespace Nasa.ViewModels
         {
             Visibility1 = "Hidden";
             Visibility3 = "Hidden";
-            if (!string.IsNullOrEmpty(Image)) Image = null;
+            Photos = new ObservableCollection<string>();
             var args = new Dictionary<string, string>();
             var parts = SelectedDate.Split(' ').ToList()[0].Split('/');
             
@@ -71,13 +60,11 @@ namespace Nasa.ViewModels
             
             var photos = JsonConvert.DeserializeObject<Photos>(data);
 
-            
+
             if (photos.photos.Count != 0)
-            {
-                PhotosURLs = new System.Collections.ObjectModel.ObservableCollection<MarsPhoto>(photos.photos);
-                //Image = PhotosURLs[0].img_src;
-            }
-            else Visibility3 = "Visible";
+                Photos = new ObservableCollection<string>(photos.photos.Select(i => i.img_src));
+            else { Visibility3 = "Visible"; }
+
             Visibility2 = "Hidden";
             
         }

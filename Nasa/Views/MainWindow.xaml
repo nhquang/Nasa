@@ -35,5 +35,6 @@
             <ContentControl Content="{Binding SelectedView}"/>
         </Grid>
     </DockPanel>
+    
 
 </Window>

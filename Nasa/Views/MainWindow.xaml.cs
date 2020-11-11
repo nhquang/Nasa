@@ -24,6 +24,7 @@ namespace Nasa.Views
         {
             InitializeComponent();
             DataContext = new Nasa.ViewModels.MainViewModel();
+            ResizeMode = ResizeMode.CanMinimize;
         }
     }
 }
