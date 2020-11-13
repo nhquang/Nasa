@@ -18,12 +18,11 @@ namespace Nasa.Views
     /// <summary>
     /// Interaction logic for Opportunity.xaml
     /// </summary>
-    public partial class Opportunity : UserControl
+    public partial class APOD : UserControl
     {
-        public Opportunity()
+        public APOD()
         {
-            InitializeComponent();
-            //DataContext = new Nasa.ViewModels.OpporunityViewModel();
+
         }
     }
 }

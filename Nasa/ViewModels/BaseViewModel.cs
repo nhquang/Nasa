@@ -14,13 +14,11 @@ namespace Nasa.ViewModels
     {
         public BaseViewModel()
         {
-            Cameras = new ObservableCollection<string>();
-            Cameras.Add("Front Hazard Avoidance Cam");
-            Cameras.Add("Rear Hazard Avoidance Cam");
+            
             Visibility1 = "Visible";
             Visibility2 = "Hidden";
             Visibility3 = "Hidden";
-            
+            SelectedDate = $"{DateTime.Now.Month}/{DateTime.Now.Day - 1}/{DateTime.Now.Year} 12:00:00 AM";
         }
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propName)
@@ -30,14 +28,7 @@ namespace Nasa.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
-        /*private DesignerSerializationVisibilityAttribute visibility_;
-
-        public DesignerSerializationVisibilityAttribute Visibility
-        {
-            get { return visibility_; }
-            set { visibility_ = value; OnPropertyChanged(nameof(Visibility)); }
-        }*/
-
+        
         private string visibility1_;
 
         public string Visibility1
@@ -62,27 +53,7 @@ namespace Nasa.ViewModels
             set { visibility3_ = value; OnPropertyChanged(nameof(Visibility3)); }
         }
 
-        private ObservableCollection<string> photos_;
-
-        public ObservableCollection<string> Photos
-        {
-            get { return photos_; }
-            set { photos_ = value; OnPropertyChanged(nameof(Photos)); }
-        }
-        private ObservableCollection<string> cameras_;
-
-        public ObservableCollection<string> Cameras
-        {
-            get { return cameras_; }
-            set { cameras_ = value; OnPropertyChanged(nameof(Cameras)); }
-        }
-        private int selectedCamera_;
-
-        public int SelectedCamera
-        {
-            get { return selectedCamera_; }
-            set { selectedCamera_ = value; OnPropertyChanged(nameof(SelectedCamera)); }
-        }
+        
         private string selectedDate_;
 
         public string SelectedDate

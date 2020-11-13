@@ -22,12 +22,14 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    
                 </Grid.RowDefinitions>
 
                 <Button Grid.Row="0" Grid.Column="0" Content="Curiosity Rover" Foreground="White" Command="{Binding SwitchingViewCommand}" CommandParameter="Curiosity" Background="Transparent"/>
-                <Button Grid.Row="1" Grid.Column="0" Content="Opportunity Rover" Foreground="White" Command="{Binding SwitchingViewCommand}" CommandParameter="Opportunity" Background="Transparent"/>
-                <Button Grid.Row="2" Grid.Column="0" Content="Spririt Rover" Foreground="White" Command="{Binding SwitchingViewCommand}" CommandParameter="Spirit" Background="Transparent"/>
+                <Button Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Center" TextBlock.TextAlignment="Center" Foreground="White" Command="{Binding SwitchingViewCommand}" CommandParameter="APOD" Background="Transparent">
+                    <TextBlock TextWrapping="Wrap">Astronomy Picture of The Day</TextBlock>
+                </Button>
+
             </Grid>
             
         </Grid>

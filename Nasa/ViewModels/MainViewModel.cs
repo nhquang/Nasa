@@ -43,11 +43,8 @@ namespace Nasa.ViewModels
                 case "Curiosity":
                     SelectedView = new CuriosityViewModel();
                     break;
-                case "Opportunity":
-                    SelectedView = new OpporunityViewModel();
-                    break;
-                default:
-                    SelectedView = new SpiritViewModel();
+                case "APOD":
+                    SelectedView = new APODViewModel();
                     break;
             }
         }

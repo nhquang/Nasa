@@ -21,14 +21,41 @@ namespace Nasa.ViewModels
             set { seePhotos_ = value; }
         }
 
+
+        private ObservableCollection<BitmapImage> photos_;
+
+        public ObservableCollection<BitmapImage> Photos
+        {
+            get { return photos_; }
+            set { photos_ = value; OnPropertyChanged(nameof(Photos)); }
+        }
+        private ObservableCollection<string> cameras_;
+
+        public ObservableCollection<string> Cameras
+        {
+            get { return cameras_; }
+            set { cameras_ = value; OnPropertyChanged(nameof(Cameras)); }
+        }
+        private int selectedCamera_;
+
+        public int SelectedCamera
+        {
+            get { return selectedCamera_; }
+            set { selectedCamera_ = value; OnPropertyChanged(nameof(SelectedCamera)); }
+        }
+
+
         public CuriosityViewModel() : base()
         {
             try
             {
                 SeePhotos = new RelayCommand(() => execute(), true);
+                Cameras = new ObservableCollection<string>();
+                Cameras.Add("Front Hazard Avoidance Cam");
+                Cameras.Add("Rear Hazard Avoidance Cam");
                 Cameras.Add("Mast Cam");
                 SelectedCamera = 0;
-                SelectedDate = "10/12/2020 12:00:00 AM";
+                
             }
             catch(Exception ex)
             {
@@ -42,7 +69,7 @@ namespace Nasa.ViewModels
             {
                 Visibility1 = "Hidden";
                 Visibility3 = "Hidden";
-                Photos = new ObservableCollection<string>();
+                Photos = new ObservableCollection<BitmapImage>();
                 var args = new Dictionary<string, string>();
                 var parts = SelectedDate.Split(' ').ToList()[0].Split('/');
 
@@ -71,8 +98,13 @@ namespace Nasa.ViewModels
 
 
                 if (photos.photos.Count != 0)
-                    Photos = new ObservableCollection<string>(photos.photos.Select(i => i.img_src));
-                else { Visibility3 = "Visible"; }
+                {
+                    foreach(var item in photos.photos)
+                    {
+                        Photos.Add(new BitmapImage(new Uri(item.img_src)));
+                    }
+                }
+                else Visibility3 = "Visible";
 
                 Visibility2 = "Hidden";
             }
@@ -82,5 +114,24 @@ namespace Nasa.ViewModels
                 logs.writeException(ex);
             }
         }
+        /*async Task<ObservableCollection<BitmapImage>> loadImages_(ObservableCollection<MarsPhoto> marsPhotos)
+        {
+            try
+            {
+                var rslt = await Task.Run(() =>
+                {
+                    var list = new ObservableCollection<BitmapImage>();
+                    foreach (var item in marsPhotos)
+                        list.Add(new BitmapImage(new Uri(item.img_src)));
+                    return list;
+                });
+
+                return rslt;
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+        }*/
     }
 }

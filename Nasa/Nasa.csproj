@@ -65,13 +65,9 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CuriosityViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\OpporunityViewModel.cs" />
-    <Compile Include="ViewModels\SpiritViewModel.cs" />
-    <Compile Include="Views\Opportunity.xaml.cs">
-      <DependentUpon>Opportunity.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Spirit.xaml.cs">
-      <DependentUpon>Spirit.xaml</DependentUpon>
+    <Compile Include="ViewModels\APODViewModel.cs" />
+    <Compile Include="Views\APOD.xaml.cs">
+      <DependentUpon>APOD.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\Curiosity.xaml">
       <SubType>Designer</SubType>
@@ -93,11 +89,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\Opportunity.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Spirit.xaml">
+    <Page Include="Views\APOD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

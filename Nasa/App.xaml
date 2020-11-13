@@ -10,12 +10,10 @@
         <DataTemplate DataType="{x:Type viewmodels:CuriosityViewModel}">
             <Views:Curiosity/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:OpporunityViewModel}">
-            <Views:Opportunity/>
+        <DataTemplate DataType="{x:Type viewmodels:APODViewModel}">
+            <Views:APOD/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:SpiritViewModel}">
-            <Views:Spirit/>
-        </DataTemplate>
+        
         
         
     </Application.Resources>
