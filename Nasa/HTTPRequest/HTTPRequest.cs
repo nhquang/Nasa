@@ -83,7 +83,7 @@ namespace Nasa
                 wEx.Response.Close();
                 wEx.Response.Dispose();
                 var err = JsonConvert.DeserializeObject<ErrMessage>(error);
-                if (err.code.Equals("400")) return "";
+                if (err.code == 400) return "";
 
                 throw;
             }
@@ -97,7 +97,7 @@ namespace Nasa
 
         class ErrMessage
         {
-            public string code { get; set; }
+            public int code { get; set; }
         }
         
     }
