@@ -67,6 +67,7 @@ namespace Nasa.ViewModels
                 if (apodObject != null) APODURL = new BitmapImage(new Uri(apodObject.hdurl));
                 else Visibility3 = "Visible";
                 Visibility2 = "Hidden";
+
             }
             catch(Exception ex)
             {
