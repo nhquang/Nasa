@@ -61,5 +61,12 @@ namespace Nasa.ViewModels
             get { return selectedDate_; }
             set { selectedDate_ = value; OnPropertyChanged(nameof(SelectedDate)); }
         }
+
+        public string formatDate(string date)
+        {
+            var parts = date.Split(' ').ToList()[0].Split('/');
+
+            return new StringBuilder($"{parts[2]}-{parts[0]}-{parts[1]}").ToString();
+        }
     }
 }

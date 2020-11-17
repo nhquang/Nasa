@@ -69,12 +69,13 @@ namespace Nasa.ViewModels
             {
                 Visibility1 = "Hidden";
                 Visibility3 = "Hidden";
+                Visibility2 = "Visible";
                 Photos = new ObservableCollection<BitmapImage>();
                 var args = new Dictionary<string, string>();
-                var parts = SelectedDate.Split(' ').ToList()[0].Split('/');
+                
 
 
-                args.Add("earth_date", $"{parts[2]}-{parts[0]}-{parts[1]}");
+                args.Add("earth_date", formatDate(SelectedDate));
                 switch (SelectedCamera)
                 {
                     case 0:
@@ -89,9 +90,9 @@ namespace Nasa.ViewModels
                 }
                 args.Add("api_key", Encryption.decryption(ConfigurationSettings.AppSettings["APIkey"].Trim()));
 
-                var request = HTTPRequest.createRequest($"{ ConfigurationSettings.AppSettings["root"].Trim() }curiosity/photos", args);
+                var request = HTTPRequest.createRequest($"{ ConfigurationSettings.AppSettings["Mars"].Trim() }", args);
 
-                Visibility2 = "Visible";
+                
                 var data = await HTTPRequest.getData(request);
 
                 var photos = JsonConvert.DeserializeObject<Photos>(data);

@@ -49,6 +49,7 @@ namespace Nasa
         public static async Task<string> getData(HttpWebRequest request)
         {
             var jsonResponse = string.Empty;
+            
             try
             {
                 using (var response = await request.GetResponseAsync())
@@ -67,10 +68,36 @@ namespace Nasa
                 return jsonResponse;
                 
             }
-            catch(Exception ex)
+            catch(WebException wEx)
             {
+                string error = "";
+                using (var stream = wEx.Response.GetResponseStream())
+                {
+                    using (System.IO.StreamReader sr = new System.IO.StreamReader(stream))
+                    {
+                        error = await sr.ReadToEndAsync();
+                        sr.Close();
+                    }
+                    stream.Close();
+                }
+                wEx.Response.Close();
+                wEx.Response.Dispose();
+                var err = JsonConvert.DeserializeObject<ErrMessage>(error);
+                if (err.code.Equals("400")) return "";
+
                 throw;
             }
+            catch(Exception ex)
+            {
+                
+                throw;
+            }
+        }
+
+
+        class ErrMessage
+        {
+            public string code { get; set; }
         }
         
     }

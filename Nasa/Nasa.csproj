@@ -59,6 +59,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="HTTPRequest\HTTPRequest.cs" />
+    <Compile Include="Models\APOD.cs" />
     <Compile Include="Utilities\Encryption.cs" />
     <Compile Include="Utilities\Logs.cs" />
     <Compile Include="Models\MarsPhoto.cs" />

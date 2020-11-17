@@ -22,7 +22,7 @@ namespace Nasa.Views
     {
         public APOD()
         {
-
+            InitializeComponent();
         }
     }
 }

@@ -14,7 +14,7 @@
                 <RowDefinition Height="300"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock  Text="Curiosity Rover" HorizontalAlignment="Center" Foreground="White" FontSize="25" VerticalAlignment="Top"/>
+            <TextBlock  Text="Mars Photos" HorizontalAlignment="Center" Foreground="White" FontSize="25" VerticalAlignment="Top"/>
             <Grid Grid.Row="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -31,7 +31,7 @@
                 <ComboBox ItemsSource="{Binding Cameras, Mode=OneWay}" SelectedIndex="{Binding SelectedCamera, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
             </Grid>
 
-            <Button Grid.Row="1" Content="Submit" HorizontalAlignment="Center" Command="{Binding SeePhotos}" Width="150" Height="60" FontSize="20" Background="Transparent" Foreground="White"/>
+            <Button Grid.Row="1" Content="Submit" HorizontalAlignment="Center" Command="{Binding SeePhotos}" Width="150" Height="60" FontSize="20" Foreground="White"/>
         </Grid>
         <Grid DockPanel.Dock="Left">
          
