@@ -31,7 +31,7 @@
                 <ComboBox ItemsSource="{Binding Cameras, Mode=OneWay}" SelectedIndex="{Binding SelectedCamera, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
             </Grid>
 
-            <Button Grid.Row="1" Content="Submit" HorizontalAlignment="Center" Command="{Binding SeePhotos}" Width="150" Height="60" FontSize="20" Foreground="White"/>
+            <Button Grid.Row="1" Content="Submit" HorizontalAlignment="Center" Command="{Binding SeePhotos}" Width="150" Height="60" FontSize="20"/>
         </Grid>
         <Grid DockPanel.Dock="Left">
          
