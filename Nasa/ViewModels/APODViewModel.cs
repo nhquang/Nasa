@@ -38,7 +38,7 @@ namespace Nasa.ViewModels
         public BitmapImage APODURL
         {
             get { return apodURL_; }
-            set { apodURL_ = value; OnPropertyChanged(nameof(APOD)); }
+            set { apodURL_ = value; OnPropertyChanged(nameof(APODURL)); }
         }
 
         
@@ -47,10 +47,11 @@ namespace Nasa.ViewModels
         {
             try
             {
+                APODURL = new BitmapImage();
                 Visibility1 = "Hidden";
                 Visibility3 = "Hidden";
                 Visibility2 = "Visible";
-
+                
                 var args = new Dictionary<string, string>();
 
                 args.Add("date", formatDate(SelectedDate));

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using Newtonsoft.Json;
+using System.Threading;
 
 namespace Nasa.ViewModels
 {
@@ -67,10 +68,11 @@ namespace Nasa.ViewModels
         {
             try
             {
+                Photos = new ObservableCollection<BitmapImage>();
                 Visibility1 = "Hidden";
                 Visibility3 = "Hidden";
                 Visibility2 = "Visible";
-                Photos = new ObservableCollection<BitmapImage>();
+                
                 var args = new Dictionary<string, string>();
                 
 
@@ -100,7 +102,7 @@ namespace Nasa.ViewModels
 
                 if (photos.photos.Count != 0)
                 {
-                    foreach(var item in photos.photos)
+                    foreach (var item in photos.photos)
                     {
                         Photos.Add(new BitmapImage(new Uri(item.img_src)));
                     }

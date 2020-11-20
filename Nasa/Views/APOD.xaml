@@ -37,8 +37,8 @@
 
             <TextBlock Text="Select A Date and A Camera" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Visibility="{Binding Visibility1}" Foreground="White"/>
             <TextBlock Text="Loading..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Visibility="{Binding Visibility2}" Foreground="White"/>
-            <TextBlock Text="No Images Availablle" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Visibility="{Binding Visibility3}" Foreground="White"/>
-            <Image Source="{Binding APODURL}" Stretch="Fill" />
+            <TextBlock Text="No Images Available" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Visibility="{Binding Visibility3}" Foreground="White"/>
+            <Image Source="{Binding APODURL}" Stretch="Fill" MaxHeight="400" MaxWidth="450" />
 
         </Grid>
     </DockPanel>
