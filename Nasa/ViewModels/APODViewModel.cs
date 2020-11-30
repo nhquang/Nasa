@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,10 @@ namespace Nasa.ViewModels
         public APODViewModel()
         {
             Command = new RelayCommand(() => this.execute(), true);
+            clickedLink = new RelayCommand(() => this.clicked(), true);
             APODURL = new BitmapImage();
+
+            HDURL = string.Empty;
         }
         private RelayCommand command_;
 
@@ -41,7 +45,28 @@ namespace Nasa.ViewModels
             set { apodURL_ = value; OnPropertyChanged(nameof(APODURL)); }
         }
 
-        
+        private RelayCommand clickedLink_;
+
+        public RelayCommand clickedLink
+        {
+            get { return clickedLink_; }
+            set { clickedLink_ = value; }
+        }
+
+        private string hdurl_;
+
+        public string HDURL
+        {
+            get { return hdurl_; }
+            set { hdurl_ = value; OnPropertyChanged(nameof(HDURL)); }
+        }
+
+
+
+        private void clicked()
+        {
+            Process.Start(HDURL);
+        }
 
         private async Task execute()
         {
@@ -65,7 +90,12 @@ namespace Nasa.ViewModels
                 var apodObject = JsonConvert.DeserializeObject<APOD>(data);
 
 
-                if (apodObject != null) APODURL = new BitmapImage(new Uri(apodObject.hdurl));
+                if (apodObject != null)
+                {
+                    APODURL = new BitmapImage(new Uri(apodObject.hdurl));
+                    Title = apodObject.title;
+                    HDURL = apodObject.hdurl;
+                }
                 else Visibility3 = "Visible";
                 Visibility2 = "Hidden";
 

@@ -35,7 +35,7 @@
         </Grid>
         <Grid DockPanel.Dock="Left">
 
-            <TextBlock Text="Select A Date and A Camera" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Visibility="{Binding Visibility1}" Foreground="White"/>
+            <TextBlock Text="Select A Date" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Visibility="{Binding Visibility1}" Foreground="White"/>
             <TextBlock Text="Loading..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Visibility="{Binding Visibility2}" Foreground="White"/>
             <TextBlock Text="No Images Available" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Visibility="{Binding Visibility3}" Foreground="White"/>
             
@@ -46,10 +46,13 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>-->
-
-            <Image Source="{Binding APODURL}" Stretch="Fill" HorizontalAlignment="Right"  VerticalAlignment="Center" MaxHeight="400" MaxWidth="420">
+            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20" MaxWidth="420" TextWrapping="Wrap" TextBlock.TextAlignment="Center" Text="{Binding Title}" Height="50" Foreground="White">
+                <Hyperlink Command="{Binding clickedLink}"></Hyperlink>
+            </TextBlock>
+            
+            <Image Source="{Binding APODURL}" Stretch="Fill" HorizontalAlignment="Center"  VerticalAlignment="Bottom" MaxHeight="400" MaxWidth="420">
                 <Image.Margin>
-                    <Thickness Right="8"/>
+                    <Thickness Bottom="8"/>
                 </Image.Margin>
             </Image>
         </Grid>
