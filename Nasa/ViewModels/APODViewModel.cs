@@ -64,7 +64,6 @@ namespace Nasa.ViewModels
             set { hdurl_ = value; OnPropertyChanged(nameof(HDURL)); }
         }
 
-        private volatile JpegBitmapDecoder decoder;
 
         private void clicked()
         {
@@ -94,22 +93,10 @@ namespace Nasa.ViewModels
 
                 if (apodObject?.hdurl != null)
                 {
-                    
-                    //APODURL = new BitmapImage(new Uri(apodObject.hdurl));
-                    await Task.Run(async() => {
-                        
-                        var temp = new JpegBitmapDecoder(new Uri(apodObject.hdurl, UriKind.Absolute), BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
-                        var src = temp.Frames[0];
+                    APODURL = await FetchImage(apodObject.hdurl);
 
-                        
-                        APODURL = src;
-                        APODURL.Freeze();
-                        Title = apodObject.title;
-                        HDURL = apodObject.hdurl;
-                    });
-
-                    //Title = apodObject.title;
-                    //HDURL = apodObject.hdurl;
+                    Title = apodObject.title;
+                    HDURL = apodObject.hdurl;
                 }
                 else Visibility3 = "Visible";
                 Visibility2 = "Hidden";
@@ -125,27 +112,22 @@ namespace Nasa.ViewModels
         }
         async Task<BitmapSource> FetchImage(string URLlink)
         {
-            //JpegBitmapDecoder decoder = null;
-            BitmapSource bitmapSource = null;
             try
             {
-                //decoder = new JpegBitmapDecoder(new Uri(URLlink, UriKind.Absolute), BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
-                decoder = await Task.Run(() => {
+                BitmapSource bitmapSource = null;
+                await Task.Run(() => {
                     
                     var temp = new JpegBitmapDecoder(new Uri(URLlink, UriKind.Absolute), BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
-                    return temp;
+                    bitmapSource = temp.Frames[0];
+                    bitmapSource.Freeze();
+                    
                 });
+                return bitmapSource;
             }
             catch (Exception ex)
             {
-                throw;//decoder = new JpegBitmapDecoder(new Uri("pack://application:,,,/Resources/ImageNotFound.jpg", UriKind.RelativeOrAbsolute), BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnDemand);
+                throw;
             }
-            finally
-            {
-                bitmapSource = decoder.Frames[0];
-                bitmapSource.Freeze();
-            }
-            return bitmapSource;
         }
     }
 }
