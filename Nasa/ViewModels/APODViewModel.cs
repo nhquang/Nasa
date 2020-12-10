@@ -93,30 +93,24 @@ namespace Nasa.ViewModels
 
                 var apodObject = JsonConvert.DeserializeObject<APOD>(data);
 
-                var abc = Thread.CurrentThread.ManagedThreadId;
-
                 if (apodObject?.hdurl != null)
                 {
                     
                     //APODURL = new BitmapImage(new Uri(apodObject.hdurl));
-                    await Task.Run(() => {
-                        /*Dispatcher.CurrentDispatcher.BeginInvoke((Action)(() => {
-                            ///var temp = new JpegBitmapDecoder(new Uri(apodObject.hdurl, UriKind.Absolute), BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
-                            //APODURL = temp.Frames[0];
-                            //APODURL.Freeze();
-                            APODURL = new BitmapImage(new Uri(apodObject.hdurl));
-                            Title = apodObject.title;
-                        }));*/
-                        //var a = new BitmapImage(new Uri(apodObject.hdurl));
-                        var tit = apodObject.title;
-                        dispatcher.BeginInvoke((Action)(() => {
-                            APODURL = new BitmapImage(new Uri(apodObject.hdurl));
-                            Title = tit;
+                    await Task.Run(async() => {
+                        
+                        var temp = new JpegBitmapDecoder(new Uri(apodObject.hdurl, UriKind.Absolute), BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
+                        var src = temp.Frames[0];
+                        
+                        await dispatcher.BeginInvoke((Action)(() => {
                             
+                            APODURL = src;
+                            APODURL.Freeze();
                         }));
+                        //src.Freeze();
                     });
 
-                    //Title = apodObject.title;
+                    Title = apodObject.title;
                     HDURL = apodObject.hdurl;
                 }
                 else Visibility3 = "Visible";
