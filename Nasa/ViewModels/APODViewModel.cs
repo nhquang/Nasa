@@ -6,13 +6,17 @@ using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace Nasa.ViewModels
 {
     class APODViewModel : BaseViewModel
     {
+        Dispatcher dispatcher = Dispatcher.CurrentDispatcher; 
+
         public APODViewModel()
         {
             Command = new RelayCommand(() => this.execute(), true);
@@ -37,9 +41,9 @@ namespace Nasa.ViewModels
             set { title_ = value; OnPropertyChanged(nameof(Title)); }
         }
 
-        private BitmapImage apodURL_;
+        private BitmapSource apodURL_;
 
-        public BitmapImage APODURL
+        public BitmapSource APODURL
         {
             get { return apodURL_; }
             set { apodURL_ = value; OnPropertyChanged(nameof(APODURL)); }
@@ -61,7 +65,7 @@ namespace Nasa.ViewModels
             set { hdurl_ = value; OnPropertyChanged(nameof(HDURL)); }
         }
 
-
+        private volatile JpegBitmapDecoder decoder;
 
         private void clicked()
         {
@@ -89,11 +93,30 @@ namespace Nasa.ViewModels
 
                 var apodObject = JsonConvert.DeserializeObject<APOD>(data);
 
+                var abc = Thread.CurrentThread.ManagedThreadId;
 
-                if (apodObject != null)
+                if (apodObject?.hdurl != null)
                 {
-                    APODURL = new BitmapImage(new Uri(apodObject.hdurl));
-                    Title = apodObject.title;
+                    
+                    //APODURL = new BitmapImage(new Uri(apodObject.hdurl));
+                    await Task.Run(() => {
+                        /*Dispatcher.CurrentDispatcher.BeginInvoke((Action)(() => {
+                            ///var temp = new JpegBitmapDecoder(new Uri(apodObject.hdurl, UriKind.Absolute), BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
+                            //APODURL = temp.Frames[0];
+                            //APODURL.Freeze();
+                            APODURL = new BitmapImage(new Uri(apodObject.hdurl));
+                            Title = apodObject.title;
+                        }));*/
+                        //var a = new BitmapImage(new Uri(apodObject.hdurl));
+                        var tit = apodObject.title;
+                        dispatcher.BeginInvoke((Action)(() => {
+                            APODURL = new BitmapImage(new Uri(apodObject.hdurl));
+                            Title = tit;
+                            
+                        }));
+                    });
+
+                    //Title = apodObject.title;
                     HDURL = apodObject.hdurl;
                 }
                 else Visibility3 = "Visible";
@@ -104,7 +127,33 @@ namespace Nasa.ViewModels
             {
                 Logs logs = new Logs();
                 logs.writeException(ex);
+                Visibility3 = "Visible";
+                Visibility2 = "Hidden";
             }
+        }
+        async Task<BitmapSource> FetchImage(string URLlink)
+        {
+            //JpegBitmapDecoder decoder = null;
+            BitmapSource bitmapSource = null;
+            try
+            {
+                //decoder = new JpegBitmapDecoder(new Uri(URLlink, UriKind.Absolute), BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
+                decoder = await Task.Run(() => {
+                    
+                    var temp = new JpegBitmapDecoder(new Uri(URLlink, UriKind.Absolute), BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
+                    return temp;
+                });
+            }
+            catch (Exception ex)
+            {
+                throw;//decoder = new JpegBitmapDecoder(new Uri("pack://application:,,,/Resources/ImageNotFound.jpg", UriKind.RelativeOrAbsolute), BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnDemand);
+            }
+            finally
+            {
+                bitmapSource = decoder.Frames[0];
+                bitmapSource.Freeze();
+            }
+            return bitmapSource;
         }
     }
 }

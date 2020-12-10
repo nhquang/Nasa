@@ -47,7 +47,7 @@
                 </Button.Template>
             </Button>-->
             <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20" MaxWidth="420" TextWrapping="Wrap" TextBlock.TextAlignment="Center" Text="{Binding Title}" Height="50" Foreground="White">
-                <Hyperlink Command="{Binding clickedLink}"></Hyperlink>
+                
             </TextBlock>
             
             <Image Source="{Binding APODURL}" Stretch="Fill" HorizontalAlignment="Center"  VerticalAlignment="Bottom" MaxHeight="400" MaxWidth="420">
