@@ -50,7 +50,7 @@
                 
             </TextBlock>
             
-            <Image Source="{Binding APODURL}" Stretch="Fill" HorizontalAlignment="Center"  VerticalAlignment="Bottom" MaxHeight="400" MaxWidth="420">
+            <Image Source="{Binding APODURL}" Stretch="Fill" HorizontalAlignment="Center"  VerticalAlignment="Bottom" MaxHeight="400" MaxWidth="470">
                 <Image.Margin>
                     <Thickness Bottom="8"/>
                 </Image.Margin>

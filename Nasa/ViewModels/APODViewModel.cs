@@ -15,7 +15,6 @@ namespace Nasa.ViewModels
 {
     class APODViewModel : BaseViewModel
     {
-        Dispatcher dispatcher = Dispatcher.CurrentDispatcher; 
 
         public APODViewModel()
         {
@@ -101,17 +100,16 @@ namespace Nasa.ViewModels
                         
                         var temp = new JpegBitmapDecoder(new Uri(apodObject.hdurl, UriKind.Absolute), BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
                         var src = temp.Frames[0];
+
                         
-                        await dispatcher.BeginInvoke((Action)(() => {
-                            
-                            APODURL = src;
-                            APODURL.Freeze();
-                        }));
-                        //src.Freeze();
+                        APODURL = src;
+                        APODURL.Freeze();
+                        Title = apodObject.title;
+                        HDURL = apodObject.hdurl;
                     });
 
-                    Title = apodObject.title;
-                    HDURL = apodObject.hdurl;
+                    //Title = apodObject.title;
+                    //HDURL = apodObject.hdurl;
                 }
                 else Visibility3 = "Visible";
                 Visibility2 = "Hidden";
