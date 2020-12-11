@@ -9,9 +9,9 @@ namespace Nasa
 {
     class Photos
     {
-        private ObservableCollection<MarsPhoto> photos_;
+        private List<MarsPhoto> photos_;
 
-        public ObservableCollection<MarsPhoto> photos
+        public List<MarsPhoto> photos
         {
             get { return photos_; }
             set { photos_ = value; }

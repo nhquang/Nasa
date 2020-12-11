@@ -23,9 +23,9 @@ namespace Nasa.ViewModels
         }
 
 
-        private ObservableCollection<BitmapImage> photos_;
+        private ObservableCollection<BitmapSource> photos_;
 
-        public ObservableCollection<BitmapImage> Photos
+        public ObservableCollection<BitmapSource> Photos
         {
             get { return photos_; }
             set { photos_ = value; OnPropertyChanged(nameof(Photos)); }
@@ -68,7 +68,7 @@ namespace Nasa.ViewModels
         {
             try
             {
-                Photos = new ObservableCollection<BitmapImage>();
+                Photos = new ObservableCollection<BitmapSource>();
                 Visibility1 = "Hidden";
                 Visibility3 = "Hidden";
                 Visibility2 = "Visible";
@@ -115,26 +115,9 @@ namespace Nasa.ViewModels
             {
                 Logs logs = new Logs();
                 logs.writeException(ex);
+                Visibility3 = "Visible";
+                Visibility2 = "Hidden";
             }
         }
-        /*async Task<ObservableCollection<BitmapImage>> loadImages_(ObservableCollection<MarsPhoto> marsPhotos)
-        {
-            try
-            {
-                var rslt = await Task.Run(() =>
-                {
-                    var list = new ObservableCollection<BitmapImage>();
-                    foreach (var item in marsPhotos)
-                        list.Add(new BitmapImage(new Uri(item.img_src)));
-                    return list;
-                });
-
-                return rslt;
-            }
-            catch(Exception ex)
-            {
-                throw;
-            }
-        }*/
     }
 }

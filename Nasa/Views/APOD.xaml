@@ -50,10 +50,13 @@
                 
             </TextBlock>
             
-            <Image Source="{Binding APODURL}" Stretch="Fill" HorizontalAlignment="Center"  VerticalAlignment="Bottom" MaxHeight="400" MaxWidth="465">
+            <Image Source="{Binding APODURL}" Stretch="Fill" HorizontalAlignment="Right"  VerticalAlignment="Bottom" MaxHeight="400" MaxWidth="460">
                 <Image.Margin>
-                    <Thickness Bottom="8"/>
+                    <Thickness Bottom="8" Right="8"/>
+                    
                 </Image.Margin>
+                
+                
             </Image>
         </Grid>
     </DockPanel>

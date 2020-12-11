@@ -68,5 +68,25 @@ namespace Nasa.ViewModels
 
             return new StringBuilder($"{parts[2]}-{parts[0]}-{parts[1]}").ToString();
         }
+
+        public async Task<BitmapSource> FetchImage(string URLlink)
+        {
+            try
+            {
+                BitmapSource bitmapSource = null;
+                
+                await Task.Run(() => {
+
+                    var temp = new JpegBitmapDecoder(new Uri(URLlink, UriKind.Absolute), BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
+                    bitmapSource = temp.Frames[0];
+                    bitmapSource.Freeze();
+                });
+                return bitmapSource;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

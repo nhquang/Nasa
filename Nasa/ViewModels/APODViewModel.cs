@@ -75,6 +75,9 @@ namespace Nasa.ViewModels
             try
             {
                 APODURL = new BitmapImage();
+                HDURL = string.Empty;
+                Title = string.Empty;
+
                 Visibility1 = "Hidden";
                 Visibility3 = "Hidden";
                 Visibility2 = "Visible";
@@ -110,24 +113,6 @@ namespace Nasa.ViewModels
                 Visibility2 = "Hidden";
             }
         }
-        async Task<BitmapSource> FetchImage(string URLlink)
-        {
-            try
-            {
-                BitmapSource bitmapSource = null;
-                await Task.Run(() => {
-                    
-                    var temp = new JpegBitmapDecoder(new Uri(URLlink, UriKind.Absolute), BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
-                    bitmapSource = temp.Frames[0];
-                    bitmapSource.Freeze();
-                    
-                });
-                return bitmapSource;
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
+        
     }
 }
