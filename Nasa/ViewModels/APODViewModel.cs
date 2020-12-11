@@ -19,10 +19,11 @@ namespace Nasa.ViewModels
         public APODViewModel()
         {
             Command = new RelayCommand(() => this.execute(), true);
-            clickedLink = new RelayCommand(() => this.clicked(), true);
+            ClickedLink = new RelayCommand((a) => this.click(a), true);
             APODURL = new BitmapImage();
 
-            HDURL = string.Empty;
+
+            LinkVisibility = "Hidden";
         }
         private RelayCommand command_;
 
@@ -50,7 +51,7 @@ namespace Nasa.ViewModels
 
         private RelayCommand clickedLink_;
 
-        public RelayCommand clickedLink
+        public RelayCommand ClickedLink
         {
             get { return clickedLink_; }
             set { clickedLink_ = value; }
@@ -64,10 +65,18 @@ namespace Nasa.ViewModels
             set { hdurl_ = value; OnPropertyChanged(nameof(HDURL)); }
         }
 
+        private string linkVisibility_;
 
-        private void clicked()
+        public string LinkVisibility
         {
-            Process.Start(HDURL);
+            get { return linkVisibility_; }
+            set { linkVisibility_ = value; OnPropertyChanged(nameof(LinkVisibility)); }
+        }
+
+        private void click(object param)
+        {
+            var temp = param as string;
+            if(!string.IsNullOrEmpty(temp)) System.Diagnostics.Process.Start(temp);
         }
 
         private async Task execute()
@@ -80,6 +89,7 @@ namespace Nasa.ViewModels
 
                 Visibility1 = "Hidden";
                 Visibility3 = "Hidden";
+                LinkVisibility = "Hidden";
                 Visibility2 = "Visible";
                 
                 var args = new Dictionary<string, string>();
@@ -103,7 +113,7 @@ namespace Nasa.ViewModels
                 }
                 else Visibility3 = "Visible";
                 Visibility2 = "Hidden";
-
+                LinkVisibility = "Visible";
             }
             catch(Exception ex)
             {
