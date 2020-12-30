@@ -98,6 +98,8 @@ namespace Nasa.ViewModels
 
                 args.Add("api_key", Encryption.decryption(ConfigurationSettings.AppSettings["APIkey"].Trim()));
 
+                args.Add("hd", "true");
+
                 var request = HTTPRequest.createRequest($"{ ConfigurationSettings.AppSettings["APOD"].Trim() }", args);
 
                 var data = await HTTPRequest.getData(request);
@@ -110,10 +112,11 @@ namespace Nasa.ViewModels
 
                     Title = apodObject.title;
                     HDURL = apodObject.hdurl;
+                    LinkVisibility = "Visible";
                 }
                 else Visibility3 = "Visible";
                 Visibility2 = "Hidden";
-                LinkVisibility = "Visible";
+                
             }
             catch(Exception ex)
             {
